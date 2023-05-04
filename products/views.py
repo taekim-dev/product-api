@@ -30,4 +30,14 @@ def get_products_on_discount(request):
     on_discount_products = [product for product in products_data["products"] if product["discountPercentage"] > 0]
     return JsonResponse({"products": on_discount_products}, safe=False)
 
+def get_all_categories(request):
+    products_data = get_products(request)
+    categories = set(product["category"] for product in products_data["products"])
+    return JsonResponse({"categories": list(categories)}, safe=False)
+
+def search_products_by_title(request, search_query):
+    products_data = get_products(request)
+    matching_products = [product for product in products_data["products"] if search_query.lower() in product["title"].lower()]
+    return JsonResponse({"products": matching_products}, safe=False)
+
 
