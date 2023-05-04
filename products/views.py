@@ -40,4 +40,9 @@ def search_products_by_title(request, search_query):
     matching_products = [product for product in products_data["products"] if search_query.lower() in product["title"].lower()]
     return JsonResponse({"products": matching_products}, safe=False)
 
+def get_products_by_category(request, category_name):
+    products_data = get_products(request)
+    products_by_category = [product for product in products_data["products"] if product["category"].lower() == category_name.lower()]
+    return JsonResponse({"products": products_by_category}, safe=False)
+
 
