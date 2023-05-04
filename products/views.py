@@ -19,3 +19,15 @@ def get_product_by_id(request, product_id):
         return JsonResponse(product, safe=False)
     else:
         return JsonResponse({"error": "Product not found"}, status=404)
+
+def get_products_in_stock(request):
+    products_data = get_products(request)
+    in_stock_products = [product for product in products_data["products"] if product["stock"] > 0]
+    return JsonResponse({"products": in_stock_products}, safe=False)
+
+def get_products_on_discount(request):
+    products_data = get_products(request)
+    on_discount_products = [product for product in products_data["products"] if product["discountPercentage"] > 0]
+    return JsonResponse({"products": on_discount_products}, safe=False)
+
+
