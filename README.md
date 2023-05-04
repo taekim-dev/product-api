@@ -2,6 +2,10 @@
 
 A simple RESTful API built with Django, which provides access to product data.
 
+## Live Demo
+
+This ProductAPI is used as a backend for the portfolio website 'Click and Collect'. You can visit the live demo [here](https://click-and-collect2.netlify.app).
+
 ## API Endpoints
 
 The following API endpoints are supported:
@@ -20,3 +24,6 @@ The following API endpoints are supported:
 2. Install the required dependencies
 3. Run the Django server
 
+## Configuration
+
+In order to use the live version of the ProductAPI, the developer needs to configure the actual URL for the JSON data. The current setup uses a `dummyProducts.json` file for development purposes. Replace the contents of the `dummyProducts.json` file with the actual data, or update the `get_products` function in `views.py` to fetch data from the actual URL.

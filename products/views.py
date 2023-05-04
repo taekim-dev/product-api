@@ -1,11 +1,19 @@
 import json
 import requests
+import os
+from django.conf import settings
 from django.http import JsonResponse
 
-def get_products(request):
-    url = 'https://click-and-collect2.s3.amazonaws.com/data/productAll.json'
+def get_products_fromURL(request):
+    url = 'Your_URL'
     response = requests.get(url)
     data = json.loads(response.text)
+    return data
+
+def get_products(request):
+    file_path = os.path.join(settings.BASE_DIR, 'dummyProducts.json')
+    with open(file_path, 'r') as file:
+        data = json.load(file)
     return data
 
 def all_products(request):
